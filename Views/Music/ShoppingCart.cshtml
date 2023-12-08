@@ -1,0 +1,58 @@
+﻿@model List<Music>
+
+<h2>Shopping Cart</h2>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+@if (Model != null && Model.Any())
+{
+    <style>
+        .left-aligned {
+            text-align: right;
+        }
+    </style>
+
+    <div class="left-aligned">
+        <button type="button" id="btnOrder" class="btn btn-success">Order</button> <br><br>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Performer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var song in Model)
+            {
+                <tr>
+                    <td>@song.Title</td>
+                    <td>@song.Genre</td>
+                    <td>@song.Performer</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <script>
+        let btn = document.getElementById("btnOrder");
+        btn.addEventListener("click", function () {
+            order();
+        });
+
+        function order() {
+            // the alert 
+            alert("Order will be on the way. Thanks for shopping");
+
+            @* // Simulate a delay and then redirect to /BrowseMusic *@
+            setTimeout(function () {
+                    window.location.href = "BrowseMusic";
+            }, 500); // 500 milliseconds (0.3 seconds) delay
+        }
+    </script>
+}
+else
+{
+    <p>Your shopping cart is empty.</p>
+}

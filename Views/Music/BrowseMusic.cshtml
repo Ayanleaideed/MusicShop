@@ -1,0 +1,66 @@
+﻿@model MusicShop.Models.BrowseMusicViewModel
+
+@{
+    ViewData["Title"] = "Browse Music";
+}
+
+<h2>Browse Music</h2>
+
+<form method="get" action="@Url.Action("BrowseMusic", "Music")">
+    <label for="genre">Select Genre:</label>
+    @Html.DropDownList("Genre", ViewBag.Genres as SelectList, new { @class = "form-control", id = "genreDropdown" })
+    <br />
+
+    <input type="submit" value="Search by Genre" class="btn btn-primary" />
+    <br />
+    <br />
+</form>
+
+<form method="get" action="@Url.Action("BrowseMusic", "Music")">
+    <label for="performer">Select Performer:</label>
+    @Html.DropDownList("Performer", ViewBag.Performers as SelectList, new { @class = "form-control", id = "performerDropdown" })
+
+    <br />
+    <input  type="submit" value="Search by Performer" class="btn btn-primary" />
+    <br />
+</form>
+
+<br />
+<form method="post" action="@Url.Action("ShoppingCart", "Music")">
+    <div class="d-flex justify-content-end mt-3">
+        <button type="submit" class="btn btn-primary">Add to Cart</button>
+    </div>
+    <br />
+   
+    
+    <table class="table table-bordered" id="musicTable">
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Performer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var song in Model.Songs)
+            {
+                <tr>
+                    <td>
+                        @* <input type="checkbox" name="selectedSongs" value="@Model.Songs.IndexOf(song)" /> *@
+                        <input type="checkbox" name="selectedSongs" value="@Model.Songs.IndexOf(song)" />
+
+
+                    </td>
+                    <td>@song.Title</td>
+                    <td>@song.Genre</td>
+                    <td>@song.Performer</td>
+                    @* <td><button type="submit" class="btn btn-primary">Add to Cart </button></td> *@
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
+
+
+

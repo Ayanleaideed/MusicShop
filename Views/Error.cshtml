@@ -1,0 +1,19 @@
+﻿@model Microsoft.AspNetCore.Diagnostics.ExceptionHandlerFeature
+
+@{
+    ViewData["Title"] = "Error";
+}
+
+<h1 class="text-danger">An error occurred while processing your request.</h1>
+
+@if (Model != null && Model.Error != null)
+{
+    <h2 class="text-danger">@Model.Error.Message</h2>
+    <pre>@Model.Error.StackTrace</pre>
+}
+else
+{
+    <h2 class="text-danger">An unexpected error occurred.</h2>
+    <p>Please try again later or contact support.</p>
+}
+
